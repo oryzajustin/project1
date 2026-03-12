@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ducol8v0ivhkp" path="res://Justin/Hero/hero.gd" id="1_hero"]
 [ext_resource type="Texture2D" uid="uid://ba811ce6j667d" path="res://Assets/Hero/character_clothes_hair_hat.webp" id="2_u8343"]
+[ext_resource type="Texture2D" uid="uid://daxapmkw6xuj0" path="res://Assets/Addons/kenney_prototype_textures/green/texture_09.png" id="3_sx6o3"]
+[ext_resource type="Script" uid="uid://dqx1dny8w4k6w" path="res://Justin/Core/entity.gd" id="4_04182"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8343"]
 atlas = ExtResource("2_u8343")
@@ -140,17 +142,33 @@ animations = [{
 
 [sub_resource type="SphereMesh" id="SphereMesh_u8343"]
 
-[node name="Hero" type="Node3D" unique_id=1161974993 groups=["entity"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04182"]
+albedo_texture = ExtResource("3_sx6o3")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sx6o3"]
+
+[node name="Hero" type="CharacterBody3D" unique_id=1684019909 groups=["entity"]]
 script = ExtResource("1_hero")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=2042841276]
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1472991184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+pixel_size = 0.1
 billboard = 2
+alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_rlwo1")
 animation = &"idle_right"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1465560843]
-transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0.16942179)
+[node name="ForwardDebug" type="MeshInstance3D" parent="." unique_id=1465560843]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.9, 1.091412)
 mesh = SubResource("SphereMesh_u8343")
+surface_material_override/0 = SubResource("StandardMaterial3D_04182")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1586361985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sx6o3")
+
+[node name="Entity" type="Node" parent="." unique_id=661676876]
+script = ExtResource("4_04182")

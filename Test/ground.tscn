@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://uvg041kwb4r1"]
 
+[ext_resource type="Texture2D" uid="uid://b6kha3f2bg8e0" path="res://Assets/Addons/kenney_prototype_textures/dark/texture_09.png" id="1_8reqx"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7m3cf"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8reqx"]
-size = Vector3(1, 0.25585938, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2ic8"]
+size = Vector3(16, 1, 16)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7m3cf"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_8reqx"]
+size = Vector2(16, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i26ev"]
+albedo_texture = ExtResource("1_8reqx")
+uv1_triplanar = true
 
 [node name="Ground" type="Node3D" unique_id=1289252310]
 
@@ -14,8 +21,9 @@ physics_material_override = SubResource("PhysicsMaterial_7m3cf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1635803761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3720703, 0)
-shape = SubResource("BoxShape3D_8reqx")
+shape = SubResource("BoxShape3D_t2ic8")
 debug_color = Color(0, 0.67857593, 0.7927681, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1760978021]
-mesh = SubResource("BoxMesh_7m3cf")
+mesh = SubResource("PlaneMesh_8reqx")
+surface_material_override/0 = SubResource("StandardMaterial3D_i26ev")
