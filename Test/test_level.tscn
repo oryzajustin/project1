@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b5wrm2klahxk"]
+
+[ext_resource type="PackedScene" uid="uid://uvg041kwb4r1" path="res://Test/ground.tscn" id="1_dmxo2"]
+[ext_resource type="PackedScene" uid="uid://cgngw6bwtf3vc" path="res://Justin/Camera/camera.tscn" id="2_ckmih"]
+
+[node name="TestLevel" type="Node3D" unique_id=1289252310]
+
+[node name="Ground" parent="." unique_id=962543100 instance=ExtResource("1_dmxo2")]
+
+[node name="Camera" parent="." unique_id=215741412 instance=ExtResource("2_ckmih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758612, 1.232999)

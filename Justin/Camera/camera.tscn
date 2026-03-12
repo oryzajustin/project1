@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cgngw6bwtf3vc"]
+
+[ext_resource type="Script" uid="uid://lmwudr8760m8" path="res://Justin/Camera/camera.gd" id="1_aktch"]
+
+[node name="Camera" type="Node3D" unique_id=215741412]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=552772197]
+script = ExtResource("1_aktch")
