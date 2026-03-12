@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cxy1jl7xou20m"]
+
+[ext_resource type="Script" uid="uid://ducol8v0ivhkp" path="res://Justin/Hero/hero.gd" id="1_hero"]
+[ext_resource type="Texture2D" uid="uid://ba811ce6j667d" path="res://Assets/Hero/character_clothes_hair_hat.webp" id="2_u8343"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8343"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 180, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlwo1"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 180, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8asu"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 180, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5neob"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 180, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx6o3"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04182"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41oye"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dggdc"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8xnf"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 100, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq32w"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 100, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euro4"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 100, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxl8k"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 100, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsk6d"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 260, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxiv4"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 260, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oimxp"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 260, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27xya"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 260, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlwo1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8343")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlwo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8asu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5neob")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx6o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04182")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41oye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dggdc")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8xnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq32w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euro4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxl8k")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsk6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxiv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oimxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27xya")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u8343"]
+
+[node name="Hero" type="Node3D" unique_id=1161974993 groups=["entity"]]
+script = ExtResource("1_hero")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=2042841276]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1472991184]
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_rlwo1")
+animation = &"idle_right"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1465560843]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0.16942179)
+mesh = SubResource("SphereMesh_u8343")

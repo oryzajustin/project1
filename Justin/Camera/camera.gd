@@ -13,7 +13,7 @@ var target_node: Node3D
 var camera_rotation := Vector3.ZERO
 
 # Pixel animation / rendering: groups to update for camera-facing sprites
-var sprite_groups = ["players"]
+var sprite_groups = ["entity"]
 
 func _ready():
 	if target_path:
@@ -51,9 +51,6 @@ func _process(_delta):
 			update_sprite_direction(node, camera_forward)
 
 func update_sprite_direction(node: Node3D, camera_forward: Vector3):
-	if not is_multiplayer_authority():
-		return
-
 	var sprite = null
 	if node.has_node("AnimatedSprite3D"):
 		sprite = node.get_node("AnimatedSprite3D")
@@ -77,39 +74,23 @@ func update_sprite_direction(node: Node3D, camera_forward: Vector3):
 	var direction = int((degrees + 45) / 90) % 4
 	var dir_suffix = ["back", "right", "front", "left"][direction]
 
-	# if node is Player:
-	# sprite.play(match_animation_state(node, dir_suffix))
+	if node is Hero:
+		sprite.play(match_animation_state(node, dir_suffix))
 
-# func match_enemy_animation_state(enemy: Enemy, dir_suffix: String) -> String:
-# 	if enemy.state == Enemy.State.HURT:
-# 		return "hurt"
-# 	if enemy.state == Enemy.State.ATTACK:
-# 		return "attacking_" + dir_suffix
-# 	if enemy.state == Enemy.State.DIE:
-# 		return "die"
+func match_animation_state(hero: Hero, dir_suffix: String) -> String:
+	if hero.state == Hero.State.HURT:
+		return "hurt_" + dir_suffix
+	if hero.state == Hero.State.ATTACK:
+		return "attacking_" + dir_suffix
 
-# 	match enemy.state:
-# 		Enemy.State.IDLE:
-# 			return "idle_" + dir_suffix
-# 		Enemy.State.MOVE:
-# 			return "running_" + dir_suffix
-# 		_:
-# 			return "idle_" + dir_suffix
-
-# func match_animation_state(player: Player, dir_suffix: String) -> String:
-	# if player.state == Player.State.HURT:
-	# 	return "hurt_" + dir_suffix
-	# if player.state == Player.State.ATTACK:
-	# 	return "attacking_" + dir_suffix
-
-	# match player.state:
-	# 	Player.State.IDLE:
-	# 		return "idle_" + dir_suffix
-	# 	Player.State.MOVE:
-	# 		return "running_" + dir_suffix
-	# 	Player.State.JUMP:
-	# 		return "jumping_" + dir_suffix
-	# 	Player.State.DEATH:
-	# 		return "death"
-	# 	_:
-	# 		return "idle_" + dir_suffix
+	match hero.state:
+		Hero.State.IDLE:
+			return "idle_" + dir_suffix
+		Hero.State.MOVE:
+			return "running_" + dir_suffix
+		Hero.State.JUMP:
+			return "jumping_" + dir_suffix
+		Hero.State.DEATH:
+			return "death"
+		_:
+			return "idle_" + dir_suffix
