@@ -69,6 +69,70 @@ region = Rect2(40, 260, 20, 20)
 atlas = ExtResource("2_u8343")
 region = Rect2(60, 260, 20, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe0p4"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 200, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0m7g"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 200, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6io5"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 200, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ruv"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 200, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0j56"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p333f"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5ban"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmh48"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j48j7"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0lv4"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eey13"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nts5"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k05r1"]
+atlas = ExtResource("2_u8343")
+region = Rect2(0, 280, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqn72"]
+atlas = ExtResource("2_u8343")
+region = Rect2(20, 280, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy8f5"]
+atlas = ExtResource("2_u8343")
+region = Rect2(40, 280, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sl0l"]
+atlas = ExtResource("2_u8343")
+region = Rect2(60, 280, 20, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rlwo1"]
 animations = [{
 "frames": [{
@@ -138,6 +202,74 @@ animations = [{
 "loop": true,
 "name": &"idle_right",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe0p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0m7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6io5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ruv")
+}],
+"loop": true,
+"name": &"running_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0j56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p333f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5ban")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmh48")
+}],
+"loop": true,
+"name": &"running_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j48j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0lv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eey13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nts5")
+}],
+"loop": true,
+"name": &"running_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k05r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqn72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy8f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sl0l")
+}],
+"loop": true,
+"name": &"running_right",
+"speed": 5.0
 }]
 
 [sub_resource type="SphereMesh" id="SphereMesh_u8343"]
@@ -159,7 +291,7 @@ billboard = 2
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_rlwo1")
-animation = &"idle_right"
+animation = &"running_right"
 
 [node name="ForwardDebug" type="MeshInstance3D" parent="." unique_id=1465560843]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.9, 1.091412)
@@ -169,6 +301,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_04182")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1586361985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_sx6o3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1161431318]
+target_desired_distance = 0.1
 
 [node name="Entity" type="Node" parent="." unique_id=661676876]
 script = ExtResource("4_04182")

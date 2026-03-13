@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cgngw6bwtf3vc" path="res://Justin/Camera/camera.tscn" id="2_ckmih"]
 [ext_resource type="PackedScene" uid="uid://cxy1jl7xou20m" path="res://Justin/Hero/hero.tscn" id="3_ckmih"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_nav01"]
+vertices = PackedVector3Array(-7.5, 0.6279297, -7.5, -7.5, 0.6279297, 7.5, 7.5, 0.6279297, 7.5, 7.5, 0.6279297, -7.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3pee"]
 
 [sub_resource type="Sky" id="Sky_m3pee"]
@@ -17,16 +21,20 @@ sky = SubResource("Sky_m3pee")
 [node name="TestLevel" type="Node3D" unique_id=1289252310]
 script = ExtResource("1_m3pee")
 
-[node name="Ground" parent="." unique_id=962543100 instance=ExtResource("1_dmxo2")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1063262050]
+navigation_mesh = SubResource("NavigationMesh_nav01")
+
+[node name="Ground" parent="NavigationRegion3D" unique_id=962543100 instance=ExtResource("1_dmxo2")]
 
 [node name="Camera" parent="." unique_id=215741412 instance=ExtResource("2_ckmih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758612, 1.232999)
 
 [node name="Hero" parent="." unique_id=1161974993 instance=ExtResource("3_ckmih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.227, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.227, 0.3994671, 0)
+is_player = true
 
 [node name="Hero2" parent="." unique_id=30175365 instance=ExtResource("3_ckmih")]
-transform = Transform3D(-0.2943572, 0, 0.95569545, 0, 1, 0, -0.95569545, 0, -0.2943572, 3.1824257, 0, 0)
+transform = Transform3D(-0.2943572, 0, 0.95569545, 0, 1, 0, -0.95569545, 0, -0.2943572, 3.1824257, 0.3994671, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=5779923]
 transform = Transform3D(1, 0, 0, 0, 0.8644767, 0.502673, 0, -0.502673, 0.8644767, 0, 5.93749, 6.4719844)
