@@ -7,6 +7,7 @@ signal died()
 signal augment_added(augment: Node)
 signal augment_removed(augment: Node)
 
+@export var display_name: String = ""
 @export var max_health: float = 100.0
 @export var health: float = 100.0
 

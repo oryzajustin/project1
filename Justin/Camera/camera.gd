@@ -104,56 +104,50 @@ func _physics_process(delta: float) -> void:
 	look_at(focus)
 
 func _process(_delta):
-	var camera_forward = -global_transform.basis.z
-	camera_forward.y = 0
+	var camera_forward := -global_transform.basis.z
+	camera_forward.y = 0.0
 	camera_forward = camera_forward.normalized()
 
 	for group in sprite_groups:
-		var nodes = get_tree().get_nodes_in_group(group)
-		for node in nodes:
-			update_sprite_direction(node, camera_forward)
+		for node in get_tree().get_nodes_in_group(group):
+			_update_sprite_direction(node, camera_forward)
 
-func update_sprite_direction(node: Node3D, camera_forward: Vector3):
-	var sprite = null
-	if node.has_node("AnimatedSprite3D"):
-		sprite = node.get_node("AnimatedSprite3D")
-	elif node.has_node("Pivot/AnimatedSprite3D"):
-		sprite = node.get_node("Pivot/AnimatedSprite3D")
 
-	if not sprite is AnimatedSprite3D:
+func _update_sprite_direction(node: Node3D, camera_forward: Vector3) -> void:
+	var sprite := _find_sprite(node)
+	if sprite == null:
+		return
+	if not node.has_method(&"get_animation_prefix"):
 		return
 
-	var object_forward = node.global_transform.basis.z
-	object_forward.y = 0
+	var dir_suffix := _get_direction_suffix(node, camera_forward)
+	var prefix: String = node.get_animation_prefix()
+
+	var directional := prefix + "_" + dir_suffix
+	if sprite.sprite_frames.has_animation(directional):
+		sprite.play(directional)
+	elif sprite.sprite_frames.has_animation(prefix):
+		sprite.play(prefix)
+
+
+func _find_sprite(node: Node3D) -> AnimatedSprite3D:
+	for path in ["AnimatedSprite3D", "Pivot/AnimatedSprite3D"]:
+		if node.has_node(path):
+			var child := node.get_node(path)
+			if child is AnimatedSprite3D:
+				return child
+	return null
+
+
+func _get_direction_suffix(node: Node3D, camera_forward: Vector3) -> String:
+	var object_forward := node.global_transform.basis.z
+	object_forward.y = 0.0
 	object_forward = object_forward.normalized()
 
-	var angle = atan2(camera_forward.x, camera_forward.z)
-	var object_angle = atan2(object_forward.x, object_forward.z)
-	var relative_angle = angle - object_angle
+	var cam_angle := atan2(camera_forward.x, camera_forward.z)
+	var obj_angle := atan2(object_forward.x, object_forward.z)
+	var relative := rad_to_deg(cam_angle - obj_angle)
+	relative = fmod(relative + 360.0, 360.0)
 
-	var degrees = rad_to_deg(relative_angle)
-	degrees = fmod(degrees + 360, 360)
-
-	var direction = int((degrees + 45) / 90) % 4
-	var dir_suffix = ["back", "right", "front", "left"][direction]
-
-	if node is Hero:
-		sprite.play(match_animation_state(node, dir_suffix))
-
-func match_animation_state(hero: Hero, dir_suffix: String) -> String:
-	if hero.state == Hero.State.HURT:
-		return "hurt_" + dir_suffix
-	if hero.state == Hero.State.ATTACK:
-		return "attacking_" + dir_suffix
-
-	match hero.state:
-		Hero.State.IDLE:
-			return "idle_" + dir_suffix
-		Hero.State.MOVE:
-			return "running_" + dir_suffix
-		Hero.State.JUMP:
-			return "jumping_" + dir_suffix
-		Hero.State.DEATH:
-			return "death"
-		_:
-			return "idle_" + dir_suffix
+	var quadrant := int((relative + 45.0) / 90.0) % 4
+	return ["back", "right", "front", "left"][quadrant]

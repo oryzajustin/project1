@@ -281,6 +281,7 @@ albedo_texture = ExtResource("3_sx6o3")
 
 [node name="Hero" type="CharacterBody3D" unique_id=1684019909 groups=["entity"]]
 script = ExtResource("1_hero")
+interact_distance = 3.0
 
 [node name="Pivot" type="Node3D" parent="." unique_id=2042841276]
 
